@@ -13,9 +13,10 @@ const getUsersData = () =>{
 const addUserData = async (user)=>{
     try{
         const users = await getUsersData()
-         users.push(user)
+        const _id = users.length+1
+         users.push({...user,_id})
        fs.writeFileSync(mkdir+'./../files/user.file.json', JSON.stringify(users));
-        return {success : true}
+        return {success : true , data: {...user,_id}}
         }catch(err){
         return {success : false}
 
@@ -35,10 +36,10 @@ const addUsersData = async (data)=>{
 const deleteUserData = async (userId)=>{
     try{
      const users = await getUsersData()
-     console.log(userId)
-     const reamainingUsers = users.filter(user=>user._id.toString() !== userId.toString())
-     console.log(reamainingUsers)
-    fs.writeFileSync(mkdir+'./../files/user.file.json', JSON.stringify(reamainingUsers));
+     const remainingUsers = users.filter(user=>user._id.toString() !== userId.toString())
+     if(users.length === remainingUsers.length)return {message : "No Data found for delete"}
+     
+    fs.writeFileSync(mkdir+'./../files/user.file.json', JSON.stringify(remainingUsers));
      return {success : true}
     }catch(err){
      return {success : false}
