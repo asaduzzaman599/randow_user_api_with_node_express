@@ -1,11 +1,14 @@
-const fs = require("fs");
-const { mkdir } = require("fs/promises");
+const userDataFile = require("../utils/fileConnect")
+
 
 module.exports.getAllUser =async(req,res)=>{
-    const data = fs.readFileSync(mkdir+'./../files/user.file.json')
-    const users = JSON.parse(data)
+    const users = await userDataFile.getUsersData()
     res.send({"data":users,count:users.length})
 }
 module.exports.getRandomUser =async(req,res)=>{
-    res.send({"name":"hello random"})
+    const users = await userDataFile.getUsersData()
+    const length =users.length
+    const user = users[Math.floor(Math.random()*length)]
+    
+    res.send({"udataser":user})
 }
