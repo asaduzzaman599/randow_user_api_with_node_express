@@ -28,7 +28,6 @@ const addUsersData = async (data)=>{
         return {success : true}
         }catch(err){
         return {success : false}
-
        }    
 }
 

@@ -23,7 +23,7 @@ router
 
 
 
-.patch('/bulk-update',usersControllers.deleteUser)
+.patch('/bulk-update',usersControllers.bulkUpdateUsers)
 
 
 .delete('/delete',usersControllers.deleteUser)

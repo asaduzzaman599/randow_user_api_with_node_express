@@ -40,15 +40,24 @@ module.exports.updateUser = async(req,res) =>{
     )
 } 
 
-module.exports.deleteUser = async(req,res) =>{
-    const {userId} = req.query
-    console.log(userId)
-    const status = await userDataFile.deleteUserData(userId)
 
+module.exports.bulkUpdateUsers = async(req,res) =>{
+    const updatedUsers = req.body
+    
+    const users = await userDataFile.getUsersData()
+
+    updatedUsers.forEach(async updatedUser=>{
+
+    const userIndex = users.findIndex(user=>user._id.toString() === updatedUser._id.toString())
+    const user = {...users[userIndex],...updatedUser}
+    users[userIndex] = user
+    })
+
+    const status = await userDataFile.addUsersData(users)
     res.send(
-    status
+        status
     )
-} 
+}
 
 module.exports.deleteUser = async(req,res) =>{
     const {userId} = req.query
