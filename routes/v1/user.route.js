@@ -10,40 +10,23 @@ router
  * @api
  * 
  */
+ .get('/all',usersControllers.getAllUser)
+
 .get('/random',usersControllers.getRandomUser)
-/**
- * @api
- * 
- */
-.get('/all',usersControllers.getAllUser)
 
 
-/**
- * @api
- * 
- */
-.post('/save',usersControllers.getAllUser)
+.post('/save',usersControllers.addUser)
 
 
-/**
- * @api
- * 
- */
-.patch('/update',usersControllers.getAllUser)
+
+.patch('/update',usersControllers.updateUser)
 
 
-/**
- * @api
- * 
- */
-.get('/bulk-update',usersControllers.getAllUser)
+
+.patch('/bulk-update',usersControllers.deleteUser)
 
 
-/**
- * @api
- * 
- */
-.delete('/bulk-delete',usersControllers.getAllUser)
-
+.delete('/delete',usersControllers.deleteUser)
+ 
 
 module.exports = router
