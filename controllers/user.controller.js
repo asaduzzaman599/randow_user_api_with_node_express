@@ -1,5 +1,17 @@
-const userDataFile = require("../utils/fileConnect")
+const userDataFile = require("../utils/file.controller.js")
 
+
+module.exports.getAllUser =async(req,res)=>{
+    const limit = req.query.limit
+    
+    const users = await userDataFile.getUsersData()
+    if(!isNaN(limit)){
+        
+        return res.send({"data":users.slice(0,limit),count:users.length})
+        
+    }
+    res.send({"data":users,count:users.length})
+}
 
 module.exports.getAllUser =async(req,res)=>{
     const limit = req.query.limit

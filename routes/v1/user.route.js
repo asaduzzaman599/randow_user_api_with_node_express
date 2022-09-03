@@ -1,5 +1,5 @@
 const express = require('express');
-const usersControllers = require('../../controllers/user.controller');
+const usersControllers = require('../../controllers/user.controller.js');
 
 const router = express.Router()
 
@@ -10,6 +10,9 @@ router
  * @api
  * 
  */
+ .get('/',(req,res)=>{
+    res.send({server:"Running"})
+ })
  .get('/all',usersControllers.getAllUser)
 
 .get('/random',usersControllers.getRandomUser)
