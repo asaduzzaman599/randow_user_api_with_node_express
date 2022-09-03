@@ -13,24 +13,14 @@ module.exports.getAllUser =async(req,res)=>{
     res.send({"data":users,count:users.length})
 }
 
-module.exports.getAllUser =async(req,res)=>{
-    const limit = req.query.limit
-    
-    const users = await userDataFile.getUsersData()
-    if(!isNaN(limit)){
-        
-        return res.send({"data":users.slice(0,limit),count:users.length})
-        
-    }
-    res.send({"data":users,count:users.length})
-}
+
 
  module.exports.getRandomUser =async(req,res)=>{
     const users = await userDataFile.getUsersData()
     const length =users.length
     const index = Math.floor(Math.random()*length)
     const user = users[index]
-    res.send({"udataser":user})
+    res.send({"user":user})
 }
 
 module.exports.addUser =async(req,res)=>{
