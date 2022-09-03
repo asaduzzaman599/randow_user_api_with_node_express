@@ -4,7 +4,7 @@ const { mkdir } = require("fs/promises");
 
 
 const getUsersData = () =>{
-    const data = fs.readFileSync(mkdir+'./../files/user.file.json')
+    const data = fs.readFileSync(__dirname+'./../files/user.file.json')
     const users = JSON.parse(data)
     return users
 
@@ -15,7 +15,7 @@ const addUserData = async (user)=>{
         const users = await getUsersData()
         const _id = users.length+1
          users.push({...user,_id})
-       fs.writeFileSync(mkdir+'./../files/user.file.json', JSON.stringify(users));
+       fs.writeFileSync(__dirname+'./../files/user.file.json', JSON.stringify(users));
         return {success : true , data: {...user,_id}}
         }catch(err){
         return {success : false}
@@ -25,7 +25,7 @@ const addUserData = async (user)=>{
 
 const addUsersData = async (data)=>{
     try{
-       fs.writeFileSync(mkdir+'./../files/user.file.json', JSON.stringify(data));
+       fs.writeFileSync(__dirname+'./../files/user.file.json', JSON.stringify(data));
         return {success : true}
         }catch(err){
         return {success : false}
@@ -39,7 +39,7 @@ const deleteUserData = async (userId)=>{
      const remainingUsers = users.filter(user=>user._id.toString() !== userId.toString())
      if(users.length === remainingUsers.length)return {message : "No Data found for delete"}
      
-    fs.writeFileSync(mkdir+'./../files/user.file.json', JSON.stringify(remainingUsers));
+    fs.writeFileSync(__dirname+'./../files/user.file.json', JSON.stringify(remainingUsers));
      return {success : true}
     }catch(err){
      return {success : false}
